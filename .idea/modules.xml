@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/plugin/testInProgress.iml" filepath="$PROJECT_DIR$/plugin/testInProgress.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testInProgress-aggregate.iml" filepath="$PROJECT_DIR$/testInProgress-aggregate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/testInProgress-client.iml" filepath="$PROJECT_DIR$/client/testInProgress-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/testInProgress-server.iml" filepath="$PROJECT_DIR$/server/testInProgress-server.iml" />
+    </modules>
+  </component>
+</project>
