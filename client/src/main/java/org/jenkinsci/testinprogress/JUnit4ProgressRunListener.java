@@ -98,7 +98,8 @@ public class JUnit4ProgressRunListener extends RunListener {
 			messageSender.testError(id, failure.getDescription()
 					.getDisplayName(), failure.getTrace());
 		}
-
+		// Insert prompt to user about continuing testing and running
+		// Wait for reply and kill the build or continue
 	}
 
 	@Override
