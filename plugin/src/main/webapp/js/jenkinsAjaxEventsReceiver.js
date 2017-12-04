@@ -13,6 +13,10 @@ var JenkinsAjaxEventsReceiver = (function($) {
 		this.building = true;
 	}
 
+    function killBuild(){
+        this.building = false;
+    }
+
 	JenkinsAjaxEventsReceiver.prototype = {
 		start : function() {
 			this.handlePreviousBuildTestEvents($.proxy(this.handleCurrentBuildTestEvents,this));

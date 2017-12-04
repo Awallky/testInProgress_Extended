@@ -1,5 +1,4 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
-
 <l:layout norefresh="true">
     <st:include it="${it.build}" page="sidepanel.jelly" /> 
     <l:main-panel>
@@ -10,6 +9,11 @@
 		<script type="text/javascript" src="${resURL}/plugin/testInProgress/numeral/numeral.min.js"></script>
 		<script src='${resURL}/plugin/testInProgress/js/testEvents.js' type='text/javascript'/>
 		<script src='${resURL}/plugin/testInProgress/js/jenkinsAjaxEventsReceiver.js' type='text/javascript'/>
+		<script>
+		    function yes_no(){
+
+		    }
+		</script>
 		<link rel="stylesheet" type="text/css"
 		        href="${resURL}/plugin/testInProgress/css/testEvents.css" />
 		<link rel="stylesheet" type="text/css"
@@ -17,9 +21,23 @@
 		<link rel="stylesheet" type="text/css"
 		        href="${resURL}/plugin/testInProgress/ztree/css/zTreeStyle/zTreeStyle.css" />   
 		<div>
+		    <br>Test Failed:</br>
+  			<br>Would you like to quit testing?</br>
+            <p id="demo">Click me.</p>
+
 			<st:bind var="remoteAction" value="${it}"/>
 			<div id="results"/>
 			<script type="text/javascript">
+			    document.getElementById("demo").onclick = function() {myFunction()};
+                function myFunction() {
+                    document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+                    jenkinsAjaxEventsReceiver.killBuild();
+                    // http://localhost:8080/job/mystacktest/22/stop
+                    //window.location.href = 'http://localhost:8080/job/mystacktest/22/stop';
+                    // TODO: Get the build number
+                    // Make HTTP Request to Server to abort build
+                }
+
 				jQuery.noConflict();
 				jQuery(function() {
 					testRuns = new TestRuns("results");	
@@ -29,7 +47,11 @@
 			</script>
 		</div>
 		<div>
-			Test Here
+
+
+            <script>
+
+            </script>
 		</div>
 	</l:main-panel>
 </l:layout>

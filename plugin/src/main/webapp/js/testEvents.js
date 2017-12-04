@@ -254,6 +254,10 @@ var TestRun = (function($) {
 			this.currentNode.elapsedTime = 0;
 			this.updateNode(this.currentNode);
 			this.currentNode.trace = event.trace;
+			// prompt user if they want to quit
+            // pause until they enter y/n
+            // kill the build/test if y
+        	// continue if n
 		},
 		handleTestErrorEvent : function(event) {
 			this.errors++;
