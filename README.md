@@ -42,12 +42,12 @@
 		Maven or something similar like testNG installed on your machine
 		testInProgress_Extended source code:
 			https://github.com/Awallky/testInProgress_Extended.git
-	Assuming that you have a working, testable project, modify your test project as described in 
-	The test in progress wiki page:
+	Assuming that you have a working, testable project, install the test in progress plugin and 
+	modify your test project as described in the test in progress wiki page:
 		https://wiki.jenkins.io/display/JENKINS/Test+In+Progress+Plugin
-		*Note: you will find .class files in the ProgressAllTestsSuite. You need to replace the generic 
-		      .class file names they have with your own .class files associated with your test suite.
-	Once you have modified those changes, clone the testInProgress_Extended plugin from the link above.
+	*Note: you will find .class files in the ProgressAllTestsSuite. You need to replace the generic 
+	      .class file names they have with your own .class files associated with your test suite.
+	Once you have implemented those changes, clone the testInProgress_Extended plugin from the link above.
 	
 	***Get Crumb Info.***
 	Open up your jenkins instance and login.
