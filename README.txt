@@ -1,0 +1,85 @@
+***Project***
+	testInProgress_Extended
+
+***Authors***
+	Adam Walls 
+	Ricardo Munoz-Torrez
+
+***Description***
+	Jenkins has two main components: client and server.
+	Client sends requests to the server and the server sends the results back to the client.
+	TestInProgress is structured very similarly.
+	
+	The original testInProgress (TIP) plugin allows a user to view the status of their junit tests as they are run.
+	It can be found via the following link:
+		https://wiki.jenkins.io/display/JENKINS/Test+In+Progress+Plugin
+	That source code consists of three modules/packages: server, client, and plugin.
+	Server does the actual work of building and running the junit tests.
+	Client listens for the server sending the resulting build and test messages run in parallel and will relay its 
+	contents to the plugin package.
+	Plugin is the user interface displaying the messages the client receives and displays them on
+	the testInProgress page on the jenkins page.
+
+	The extended TIP builds on this and allows a user to decide if they want to stop testing  or continue.
+	If the user selects to stop, it will simply exit execution of the junit tests.
+	If the user selects to continue, it will continue testing.
+	
+***Development Tools/Environments Used***
+	**Adam**
+		Microsoft Surface Pro 2 w/ Windows 8.1 OS
+ 		University of Kentucky virtual machine on openstack which used Ubuntu OS
+		java 8
+		maven 3.3.9
+		Jenkins 
+		IntelliJ
+		Eclipse
+		
+	**Ricardo**
+		 
+***How to install the plugin***
+	**What you will need**
+		Jenkins installed on your machine
+		Maven or something similar like testNG installed on your machine
+		testInProgress_Extended source code:
+			https://github.com/Awallky/testInProgress_Extended.git
+	Assuming that you have a working, testable project, modify your test project as described in 
+	The test in progress wiki page:
+		https://wiki.jenkins.io/display/JENKINS/Test+In+Progress+Plugin
+		*Note: you will find .class files in the ProgressAllTestsSuite. You need to replace the generic 
+		      .class file names they have with your own .class files associated with your test suite.
+	Once you have modified those changes, clone the testInProgress_Extended plugin from the link above.
+	
+	***Get Crumb Info.***
+	Open up your jenkins instance and login.
+	Click on your username in the Jenkins toolbar at the top of your screen.
+	Click on the configure tab on the left side of the page.
+	You should see a section of the page labeled 'API Token.'
+	Click the button under this labeled 'Show API Token...' and it will give you the necessary token to make requests to 
+	your Jenkins instance via HTTP.
+	Next, type the following command via a terminal and place the output into a text file:
+		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "CRUMB"
+	You should be able to stop builds using the following command:
+		curl -I -X POST http://<login_name>:<API TOKEN>@localhost:8080/job/<JOB NAME>/<BUILD NUMBER>/stop -H 
+		"Jenkins-Crumb:JENKINS CRUMB NUMBER"
+	
+	Now change the source code in the testInPrgress_Extended/src/plugin/index.jelly file so that it matches your project's build
+	name, build number, and special crumb and access tokens.
+	
+	* The following is a very helpful link in what is required to make an HTTP request to Jenkins 
+	  to abort a build for a specific job:
+		http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
+	
+	**Install testInProgress_Extended**
+	Open a command line terminal and enter the plugin's root directory.
+	Type mvn clean package.
+	Check the target/ directory and find the testInProgress.hpi file location. This will be your new plugin to add to jenkins.
+	Open up your instance of jenkins and perform the following steps:
+		- Go to configure jenkins (should look like a grey cog on the side toolbar on the left side of the page).
+		- Go to Manage Plugins (should lok like a green puzzle piece).
+		- There will be 4 different tabs available presented to the user. Select the advanced tab (should be the last one).
+		- Go to the section titled "Upload Plugin" and upload your previously located .hpi file. 
+		- Upload it to your jenkins instance and restart jenkins.
+		- You should now see the testInProgress_Extended plugin applied.
+		
+	* A helpful link for installing the .hpi plugin:
+		https://jenkins.io/doc/book/managing/plugins/#advanced-installation
