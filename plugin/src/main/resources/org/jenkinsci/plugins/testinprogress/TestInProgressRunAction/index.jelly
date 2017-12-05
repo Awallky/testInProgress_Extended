@@ -21,37 +21,25 @@
 		<link rel="stylesheet" type="text/css"
 		        href="${resURL}/plugin/testInProgress/ztree/css/zTreeStyle/zTreeStyle.css" />   
 		<div>
-		    <br>Test Failed:</br>
-  			<br>Would you like to quit testing?</br>
-            <p id="demo">Click me.</p>
-
 			<st:bind var="remoteAction" value="${it}"/>
 			<div id="results"/>
 			<script type="text/javascript">
-			    document.getElementById("demo").onclick = function() {myFunction()};
-                function myFunction() {
-                    document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
-                    jenkinsAjaxEventsReceiver.killBuild();
-                    // http://localhost:8080/job/mystacktest/22/stop
-                    //window.location.href = 'http://localhost:8080/job/mystacktest/22/stop';
-                    // TODO: Get the build number
-                    // Make HTTP Request to Server to abort build
-                }
-
 				jQuery.noConflict();
 				jQuery(function() {
 					testRuns = new TestRuns("results");	
 					jenkinsAjaxEventsReceiver = new JenkinsAjaxEventsReceiver(testRuns);
-					jenkinsAjaxEventsReceiver.start();			
-				});
+					jenkinsAjaxEventsReceiver.start();
+				 });
+
 			</script>
 		</div>
 		<div>
-
-
-            <script>
-
-            </script>
+		    <form method="post" action="http://awall60:cb05075ccdf537ec76f7fe4f861346bb@localhost:8080/job/mystacktest/40/stop?token=c8490d59bad7ed3fa6df3c9867c41c82">
+		        <button id="quit_button">Quit?</button>
+		    </form>
+            // TODO: Get the build number and add it to the job number instead of manually adding it
+            // TODO: Get job name
+            // TODO: Get API token(s)
 		</div>
 	</l:main-panel>
 </l:layout>
