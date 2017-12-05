@@ -56,11 +56,18 @@
 	You should see a section of the page labeled 'API Token.'
 	Click the button under this labeled 'Show API Token...' and it will give you the necessary token to make requests to 
 	your Jenkins instance via HTTP.
+	To get the crumb information, type the following command and save it into a text file for later reference:
+		CRUMB=$(curl -s 'http://USER:TOKEN@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
 	Next, type the following command via a terminal and place the output into a text file:
 		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "CRUMB"
 	You should be able to stop builds using the following command:
 		curl -I -X POST http://<login_name>:<API TOKEN>@localhost:8080/job/<JOB NAME>/<BUILD NUMBER>/stop -H 
 		"Jenkins-Crumb:JENKINS CRUMB NUMBER"
+	* Here are a couple of useful links if there is any confusion about the instructons:
+		1. Get Jenkins Crumb
+			https://stackoverflow.com/questions/38137760/jenkins-rest-api-create-job
+		2. Get API User Token
+			http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
 	
 	Now change the source code in the testInPrgress_Extended/src/plugin/index.jelly file so that it matches your project's build
 	name, build number, and special crumb and access tokens.
