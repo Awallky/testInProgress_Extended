@@ -59,7 +59,6 @@
 	To get the crumb information, type the following command and save it into a text file for later reference:
 		wget -q --auth-no-challenge --user yourUserName --password yourPassword--output-document -
 		'http://myJenkins:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
-
 	Next, type the following command via a terminal and place the output into a text file:
 		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "CRUMB"
 	You should be able to stop builds using the following command:
@@ -70,6 +69,8 @@
 			https://stackoverflow.com/questions/23497819/trigger-parameterized-build-with-curl-and-crumb
 		2. Get API User Token
 			http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
+		* Some people have had trouble getting the crumb number correct. So there may be better ways of getting it for your
+		  Jenkins jobs.
 	
 	Now change the source code in the testInPrgress_Extended/src/plugin/index.jelly file so that it matches your project's build
 	name, build number, and special crumb and access tokens.
@@ -83,12 +84,18 @@
 	Type mvn clean package.
 	Check the target/ directory and find the testInProgress.hpi file location. This will be your new plugin to add to jenkins.
 	Open up your instance of jenkins and perform the following steps:
-		- Go to configure jenkins (should look like a grey cog on the side toolbar on the left side of the page).
-		- Go to Manage Plugins (should lok like a green puzzle piece).
-		- There will be 4 different tabs available presented to the user. Select the advanced tab (should be the last one).
-		- Go to the section titled "Upload Plugin" and upload your previously located .hpi file. 
-		- Upload it to your jenkins instance and restart jenkins.
-		- You should now see the testInProgress_Extended plugin applied.
+		Go to configure jenkins (should look like a grey cog on the side toolbar on the left side of the page).
+		Go to Manage Plugins (should lok like a green puzzle piece).
+		There will be 4 different tabs available presented to the user. Select the advanced tab (should be the last one).
+		Go to the section titled "Upload Plugin" and upload your previously located .hpi file. 
+		Upload it to your jenkins instance and restart jenkins.
+		You should now see the testInProgress_Extended plugin applied.
 		
 	* A helpful link for installing the .hpi plugin:
 		https://jenkins.io/doc/book/managing/plugins/#advanced-installation
+***TODO***
+	Allow jenkins to find the user name and use it for the abort build request
+	Allow jenkins to find the job name and use it for the abort build request
+	Allow jenkins to find the build number and use it for the abort build request
+	Make a more polished button; Much friendlier user experience than it currently has
+	Only prompt the user when there is a test failure, otherwise hide this button
