@@ -57,23 +57,23 @@
 	Click the button under this labeled 'Show API Token...' and it will give you the necessary token to make requests to 
 	your Jenkins instance via HTTP.
 	To get the crumb information, type the following command and save it into a text file for later reference:
-		wget -q --auth-no-challenge --user yourUserName --password yourPassword--output-document -
-		'http://myJenkins:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+		CRUMB=$(curl -s 'http://USER:TOKEN@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+		echo "$CRUMB" >> crumb.txt
 	Next, type the following command via a terminal and place the output into a text file:
-		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "CRUMB"
+		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "$CRUMB"
 	You should be able to stop builds using the following command:
 		curl -I -X POST http://<login_name>:<API TOKEN>@localhost:8080/job/<JOB NAME>/<BUILD NUMBER>/stop -H 
-		"Jenkins-Crumb:JENKINS CRUMB NUMBER"
+		"Jenkins-Crumb:JENKINS CRUMB NUMB
+	This shows that you are ready to install the plugin and make the necessary changes to the source code.
 	* Here are a couple of useful links if there is any confusion about the instructons:
 		1. Get Jenkins Crumb
-			https://stackoverflow.com/questions/23497819/trigger-parameterized-build-with-curl-and-crumb
+			https://stackoverflow.com/questions/28577551/how-to-disable-a-jenkins-job-via-curl
 		2. Get API User Token
 			http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
-		* Some people have had trouble getting the crumb number correct. So there may be better ways of getting it for your
-		  Jenkins jobs.
 	
-	Now change the source code in the testInPrgress_Extended/src/plugin/index.jelly file so that it matches your project's build
-	name, build number, and special crumb and access tokens.
+	Now change the source code in the testInPrgress_Extended/src/plugin/index.jelly file around line 37 
+	so that it matches your project's build name, build number, and special crumb and access tokens that you just got
+	from the previous steps.
 	
 	* The following is a very helpful link in what is required to make an HTTP request to Jenkins 
 	  to abort a build for a specific job:
