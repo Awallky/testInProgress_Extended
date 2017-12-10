@@ -61,6 +61,8 @@
 	To get the crumb information, type the following command and save it into a text file for later reference:
 		CRUMB=$(curl -s 'http://USER:TOKEN@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
 		echo "$CRUMB" >> crumb.txt
+		**Note: If you are having trouble getting the crumb using these commands, make sure that your Jenkins instance 
+		        is running on port 8080.**
 	Next, type the following command via a terminal and place the output into a text file:
 		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "$CRUMB"
 	You should be able to stop builds using the following command:
