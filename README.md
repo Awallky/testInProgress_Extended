@@ -66,8 +66,8 @@
 	Next, type the following command via a terminal and place the output into a text file:
 		curl -X POST http://API_USER_ID:API_TOKEN@JENKINS_URL/job/JOB_NAME/build -H "$CRUMB"
 	You should be able to stop builds using the following command:
-		curl -I -X POST http://<login_name>:<API TOKEN>@localhost:8080/job/<JOB NAME>/<BUILD NUMBER>/stop -H 
-		"Jenkins-Crumb:JENKINS CRUMB NUMB
+		curl -I -X POST http://login_name:API TOKEN@localhost:8080/job/JOB NAME/BUILD NUMBER/stop -H 
+		"Jenkins-Crumb:JENKINS CRUMB NUMBER"
 	This shows that you are ready to install the plugin and make the necessary changes to the source code.
 	* Here are a couple of useful links if there is any confusion about the instructons:
 		1. Get Jenkins Crumb
